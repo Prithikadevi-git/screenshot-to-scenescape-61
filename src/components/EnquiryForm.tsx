@@ -17,10 +17,10 @@ export function EnquiryForm({ kind }: { kind: Kind }) {
     const f = new FormData(e.currentTarget);
     const v = (k: string) => String(f.get(k) ?? "").trim();
     const errs: Record<string, string> = {};
-    if (v("name").length < 2) errs.name = "Please enter your name.";
-    if (!/^[6-9]\d{9}$/.test(v("phone").replace(/\D/g, "").slice(-10))) errs.phone = "Enter a valid 10-digit mobile number.";
-    if (!v("area")) errs.area = "Tell us where to deliver.";
-    if (kind === "bulk" && !(Number(v("people")) > 0)) errs.people = "How many people?";
+    if (v("name").length < 2) errs["name"] = "Please enter your name.";
+    if (!/^[6-9]\d{9}$/.test(v("phone").replace(/\D/g, "").slice(-10))) errs["phone"] = "Enter a valid 10-digit mobile number.";
+    if (!v("area")) errs["area"] = "Tell us where to deliver.";
+    if (kind === "bulk" && !(Number(v("people")) > 0)) errs["people"] = "How many people?";
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
