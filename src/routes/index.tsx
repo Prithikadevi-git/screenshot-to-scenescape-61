@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Menu as MenuIcon, X, Phone, MessageCircle, Leaf, Home, Truck, CalendarCheck, Sprout, MapPin, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { CATEGORIES, KITCHEN, MENU, orderMessage, whatsappLink, type MealCategory } from "@/lib/kitchen";
 import hero from "@/assets/hero-thali.jpg";
