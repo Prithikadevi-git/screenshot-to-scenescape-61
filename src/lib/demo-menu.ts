@@ -1,12 +1,12 @@
 // DEMO DATA — dishes and prices are placeholders until the owner confirms the real menu.
 import type { Category, FoodItem } from "./menu-types";
-import breakfast from "@/assets/breakfast.jpg";
-import poori from "@/assets/poori-pongal.jpg";
-import thali from "@/assets/hero-thali.jpg";
-import rice from "@/assets/rice.jpg";
-import dinner from "@/assets/dinner.jpg";
-import snacks from "@/assets/snacks.jpg";
-import drinks from "@/assets/beverages.jpg";
+const breakfast = "/images/menu/breakfast.jpg";
+const poori = "/images/menu/poori-pongal.jpg";
+const thali = "/images/menu/hero-thali.jpg";
+const rice = "/images/menu/rice.jpg";
+const dinner = "/images/menu/dinner.jpg";
+const snacks = "/images/menu/snacks.jpg";
+const drinks = "/images/menu/beverages.jpg";
 
 export const DEMO_CATEGORIES: Category[] = [
   { id: "breakfast", name: "Breakfast", description: "Morning tiffin", sortOrder: 1 },
