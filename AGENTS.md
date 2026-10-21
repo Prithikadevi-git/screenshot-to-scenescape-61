@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Business facts (phone, areas, owner) live only in src/lib/kitchen.ts; never add unverified facts — illustrative content must be labelled as such.
+- Enquiry forms hand off to WhatsApp (no backend); do not claim server-side submission.
