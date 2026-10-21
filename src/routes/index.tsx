@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu as MenuIcon, X, Phone, MessageCircle, Leaf, Home, Truck, CalendarCheck, Sprout, MapPin, Minus, Plus } from "lucide-react";
+import { Menu as MenuIcon, X, Phone, MessageCircle, Leaf, Home, Truck, CalendarCheck, Sprout, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { CATEGORIES, KITCHEN, MENU, orderMessage, whatsappLink, type MealCategory } from "@/lib/kitchen";
+import { KITCHEN, whatsappLink } from "@/lib/kitchen";
+import { PublicMenu } from "@/components/PublicMenu";
 import hero from "@/assets/hero-thali.jpg";
-import breakfast from "@/assets/breakfast.jpg";
 import dinner from "@/assets/dinner.jpg";
 import kitchenImg from "@/assets/kitchen.jpg";
 
@@ -25,7 +25,6 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV: [string, string][] = [["Menu", "#menu"], ["Meal plans", "#plans"], ["About", "#about"], ["Delivery", "#delivery"], ["FAQ", "#faq"], ["Contact", "#contact"]];
-const IMG: Record<MealCategory, string> = { Breakfast: breakfast, Lunch: hero, Dinner: dinner, Jain: hero };
 const GENERAL = whatsappLink(`Hello ${KITCHEN.name}! I'd like to know today's menu and prices.`);
 
 function Index() {
@@ -33,7 +32,7 @@ function Index() {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <MenuSection />
+      <PublicMenu />
       <Plans />
       <About />
       <Why />
@@ -108,48 +107,6 @@ function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; 
       <h2 className="mt-3 text-4xl font-semibold md:text-5xl">{title}</h2>
       {sub && <p className="mt-4 text-muted-foreground">{sub}</p>}
     </div>
-  );
-}
-
-function MenuSection() {
-  const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
-  const [qty, setQty] = useState<Record<string, number>>({});
-  const items = MENU.filter((m) => cat === "All" || m.category === cat);
-  return (
-    <section id="menu" className="mx-auto max-w-6xl px-5 py-24">
-      <SectionHead eyebrow="What we cook" title="From morning idli to evening chapati" sub="Our menu changes with the day. Pick a dish and quantity — we'll confirm today's price and delivery time on WhatsApp." />
-      <div role="tablist" aria-label="Meal categories" className="mb-10 flex flex-wrap justify-center gap-2">
-        {CATEGORIES.map((c) => (
-          <button key={c} role="tab" aria-selected={cat === c} onClick={() => setCat(c)} className={`rounded-full border px-5 py-2 text-sm font-medium transition ${cat === c ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:border-primary"}`}>{c}</button>
-        ))}
-      </div>
-      {items.length === 0 ? <p className="text-center text-muted-foreground">No dishes in this category yet.</p> : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((m) => {
-            const q = qty[m.id] ?? 1;
-            return (
-              <article key={m.id} className="group overflow-hidden rounded-3xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-warm">
-                <div className="aspect-[4/3] overflow-hidden"><img src={IMG[m.category]} alt={m.name} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /></div>
-                <div className="p-6">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-chili">{m.category}</span>
-                  <h3 className="mt-1 text-2xl font-semibold">{m.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{m.description}</p>
-                  <div className="mt-5 flex items-center justify-between gap-3">
-                    <div className="flex items-center rounded-full border border-border">
-                      <button aria-label={`Fewer ${m.name}`} className="p-2.5" onClick={() => setQty({ ...qty, [m.id]: Math.max(1, q - 1) })}><Minus className="h-4 w-4" /></button>
-                      <span className="w-6 text-center text-sm font-semibold" aria-live="polite">{q}</span>
-                      <button aria-label={`More ${m.name}`} className="p-2.5" onClick={() => setQty({ ...qty, [m.id]: q + 1 })}><Plus className="h-4 w-4" /></button>
-                    </div>
-                    <Button asChild variant="whatsapp" size="sm" className="px-4"><a href={whatsappLink(orderMessage(m, q))} target="_blank" rel="noopener">Order on WhatsApp</a></Button>
-                  </div>
-                  <p className="mt-3 text-xs text-muted-foreground">Price on enquiry</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      )}
-    </section>
   );
 }
 
@@ -285,7 +242,7 @@ function Footer() {
         <nav className="flex flex-wrap gap-5 text-sm text-muted-foreground">{NAV.map(([l, h]) => <a key={h} href={h} className="hover:text-foreground">{l}</a>)}</nav>
         <p className="text-sm text-muted-foreground">{KITCHEN.locality} · {KITCHEN.phoneDisplay}</p>
       </div>
-      <p className="pb-6 text-center text-xs text-muted-foreground">Website concept · Dishes shown are illustrative; daily menu & prices confirmed by the kitchen.</p>
+      <p className="pb-6 text-center text-xs text-muted-foreground">Website concept · Menu & prices shown are samples until confirmed by the kitchen. · <a href="/admin" className="underline">Staff login</a></p>
     </footer>
   );
 }
