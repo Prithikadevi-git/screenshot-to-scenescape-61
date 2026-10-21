@@ -9,7 +9,7 @@ const config = {
   authDomain: "swayampaaka-kitchen.firebaseapp.com",
   projectId: "swayampaaka-kitchen",
   storageBucket:  "swayampaaka-kitchen.firebasestorage.app",
-  messagingSenderId: "602230237942",,
+  messagingSenderId: "602230237942",
   appId: "1:602230237942:web:022eaecee2e2a4d2fe5ad7",
 };
 
