@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = [["Menu", "#menu"], ["Meal plans", "#plans"], ["About", "#about"], ["Delivery", "#delivery"], ["FAQ", "#faq"], ["Contact", "#contact"]];
+const NAV: [string, string][] = [["Menu", "#menu"], ["Meal plans", "#plans"], ["About", "#about"], ["Delivery", "#delivery"], ["FAQ", "#faq"], ["Contact", "#contact"]];
 const IMG: Record<MealCategory, string> = { Breakfast: breakfast, Lunch: hero, Dinner: dinner, Jain: hero };
 const GENERAL = whatsappLink(`Hello ${KITCHEN.name}! I'd like to know today's menu and prices.`);
 
@@ -154,7 +154,7 @@ function MenuSection() {
 }
 
 function Plans() {
-  const plans = [
+  const plans: [string, string, string][] = [
     ["Trial", "1–2 days", "Taste our food before you commit — exactly how many of our regulars started."],
     ["Weekly", "7 days", "Breakfast, lunch, dinner or any mix, for busy work weeks."],
     ["Monthly", "30 days", "Our subscription plan for steady, worry-free home food every day."],
@@ -242,7 +242,7 @@ function Bulk() {
 }
 
 function Faq() {
-  const qs = [
+  const qs: [string, string][] = [
     ["Is the food fully vegetarian?", "Yes. We are a pure vegetarian cloud kitchen. Jain options are also available."],
     ["Which meals do you serve?", "Breakfast, lunch and dinner."],
     ["Can I try before subscribing?", "Yes — you can try our meals for a day or two, then decide on a subscription."],

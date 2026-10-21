@@ -52,9 +52,9 @@ export function EnquiryForm({ kind }: { kind: Kind }) {
 
   return (
     <form noValidate onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-      {field("name", "Your name", <Input id={`${kind}-name`} name="name" autoComplete="name" aria-invalid={!!errors.name} />)}
-      {field("phone", "Mobile number", <Input id={`${kind}-phone`} name="phone" type="tel" inputMode="tel" autoComplete="tel" aria-invalid={!!errors.phone} />)}
-      {field("area", "Delivery area", <Input id={`${kind}-area`} name="area" placeholder="e.g. Whitefield, ITPL" aria-invalid={!!errors.area} />)}
+      {field("name", "Your name", <Input id={`${kind}-name`} name="name" autoComplete="name" aria-invalid={!!errors["name"]} />)}
+      {field("phone", "Mobile number", <Input id={`${kind}-phone`} name="phone" type="tel" inputMode="tel" autoComplete="tel" aria-invalid={!!errors["phone"]} />)}
+      {field("area", "Delivery area", <Input id={`${kind}-area`} name="area" placeholder="e.g. Whitefield, ITPL" aria-invalid={!!errors["area"]} />)}
       {kind === "subscription" ? (
         <>
           {field("plan", "Plan", (
@@ -78,7 +78,7 @@ export function EnquiryForm({ kind }: { kind: Kind }) {
         </>
       ) : (
         <>
-          {field("people", "Number of people", <Input id={`${kind}-people`} name="people" type="number" min={1} aria-invalid={!!errors.people} />)}
+          {field("people", "Number of people", <Input id={`${kind}-people`} name="people" type="number" min={1} aria-invalid={!!errors["people"]} />)}
           {field("date", "Date (optional)", <Input id={`${kind}-date`} name="date" type="date" />)}
         </>
       )}
