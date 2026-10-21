@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, serverTimestamp, setDoc, updateDoc, writeBatch } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, serverTimestamp, updateDoc, writeBatch } from "firebase/firestore";
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { fb } from "./firebase";
 import { DEMO_CATEGORIES, DEMO_ITEMS } from "./demo-menu";
@@ -61,4 +61,3 @@ export async function seedDemoMenu() {
   await b.commit();
 }
 
-export { setDoc };
