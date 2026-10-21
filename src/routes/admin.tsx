@@ -194,8 +194,8 @@ function Categories({ items, categories }: { items: FoodItem[]; categories: Cate
 
   async function save(e: FormEvent) {
     e.preventDefault(); if (!form) return;
-    if (form.name.trim().length < 2) return toast.error("Category name is too short.");
-    if (categories.some((c) => c.id !== form.id && c.name.toLowerCase() === form.name.trim().toLowerCase())) return toast.error("A category with that name already exists.");
+    if (form.name.trim().length < 2) { toast.error("Category name is too short."); return; }
+    if (categories.some((c) => c.id !== form.id && c.name.toLowerCase() === form.name.trim().toLowerCase())) { toast.error("A category with that name already exists."); return; }
     setBusy(true);
     try { await saveCategory({ ...form, name: form.name.trim() }); toast.success("Category saved"); setForm(null); } catch (x) { toast.error(firebaseErrorMessage(x)); } finally { setBusy(false); }
   }
